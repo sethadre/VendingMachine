@@ -5,11 +5,11 @@ public class Currency extends Vending{
     private String CoinName;
 
 
-    public Coin(){
+    public Currency(){
      this.COIN_VALUE = 0;
-     this.CoinName = NULL;
+     this.CoinName = "";
     }
-    public Coin(double COIN_VALUE, String CoinName){
+    public Currency(double COIN_VALUE, String CoinName){
         this.COIN_VALUE = COIN_VALUE;
         this.CoinName = CoinName;
     }
