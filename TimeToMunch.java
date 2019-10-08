@@ -1,7 +1,6 @@
 import java.util.Scanner;
 class TimeToMunch {
     public static void main(String[]args){
-        // ArrayList<Currency> Wallet = new ArrayList();
         Scanner input = new Scanner(System.in);
         Vending machine = new Vending();
         char selection;
@@ -13,6 +12,7 @@ class TimeToMunch {
                     break;
                 case 'I': CoinMenu();
                     selection = Character.toUpperCase(input.nextLine().charAt(0));
+                    System.out.println(selection);
                     switch (selection) {
                         case 'A': machine.addCurrency(new Currency(0.05,"nickle"));
                             break;
@@ -21,10 +21,24 @@ class TimeToMunch {
                         case 'C': machine.addCurrency(new Currency(0.25,"quarter"));
                             break;
                         case 'D': machine.addCurrency(new Currency(1.0,"dollar"));
+                            break;
                         default: System.out.println("Error, incorrect option selected");
                             break;
                     }
-                case 'B': //
+                    break;
+                case 'B': 
+                    if (!machine.outOfProducts()) {
+                        System.out.print(machine.ProductMenu());
+                        selection = Character.toUpperCase(input.nextLine().charAt(0));
+                        if (machine.hasProduct(selection)) {
+                            Product bought = machine.Buy(selection);
+                            System.out.println(( bought == null ? "Insufficient money": "Purchased: "+bought.toString()));
+                        } else {
+                            System.out.println("Selection is not a product");
+                        }
+                    } else {
+                        System.out.println("No products to buy!");
+                    }
                     break;
                 case 'A': 
                     System.out.println("Description:");
@@ -34,12 +48,17 @@ class TimeToMunch {
                     System.out.println("Quantity:");
                     int amount = input.nextInt();
                     machine.addProduct(new Product(costof,nameof,amount));
+                    input.nextLine();
+                    break;
+                case 'R': System.out.printf("Removed: $%.2f\n",machine.removeAllCurrency());
                 default:
                     break;
             }
+            //input.nextLine();
+            VendMenu();
+            selection = Character.toUpperCase(input.nextLine().charAt(0));
         }
-    
-    
+        System.out.println("Thank you for your business");
     }
 
     public static void VendMenu() {
