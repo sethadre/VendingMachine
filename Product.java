@@ -9,10 +9,10 @@ class Product {
         this.amount = 0;
     }
 
-    public Product(double x, String name) {
-        this.cost = x;
-        this.name = name;
-    }
+    // public Product(double x, String name) {
+    //     this.cost = x;
+    //     this.name = name;
+    // }
 
     public Product(double x, String name, int amnt) {
         this.cost = x;

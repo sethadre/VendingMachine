@@ -17,6 +17,10 @@ class Vending{
     }
 
     public double removeAllCurrency() {
+        // for (Currency var : wallet) {
+            
+        // }
+
         double total = 0;
         while (!wallet.isEmpty()) {
             total += wallet.get(0).getValue();
@@ -56,7 +60,7 @@ class Vending{
         for (Currency coin : wallet) {
            total += coin.getValue();
            if (total >= products.get(b).getCost()) {
-                isBought = new Product(products.get(b).getCost(),products.get(b).getName());
+                isBought = new Product(products.get(b).getCost(),products.get(b).getName(),1);
                 products.get(b).sold();
                 if (products.get(b).getAmount() < 1) {
                     products.remove(b);
